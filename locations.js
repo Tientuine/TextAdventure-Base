@@ -6,6 +6,26 @@ function Location(name, descrip) {
     this.items = [];
 }
 
+Location.prototype.has = function(item) {
+    // this will be like player.has from earlier examples
+}
+
+Location.prototype.remove = function(item) {
+    // this will be a lot like player.drop
+}
+
+Location.prototype.put = function(item) {
+    // this will be similar to the original version of player.pickup
+}
+
+function indexOfLocation = function(map, locName) {
+    // this should work like indexOf, but searches for a location whose name matches
+}
+
+function isConnected(map, from, to) {
+    // check if there is a 1 in the corresponding cell of connections
+}
+
 // example - how to write a function that makes a path between two locations
 function connect(map, from, to) {
     map.connections[from][to] = 1;
@@ -42,5 +62,4 @@ function testMap() {
     }
 }
 
-testMap();
-
+//testMap();
