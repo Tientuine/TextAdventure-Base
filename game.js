@@ -1,7 +1,19 @@
 // Global player object (later this will no longer be global)
 var player = {
 	items: [],
+	// add a property for the player's current location
 };
+
+player.goto = function(loc) {
+	// check if loc is valid (exists in the map)
+		// if so, then check if loc is connected to player's current location
+			// if so, then do any other logic you need (like checking for prerequisite items)
+			// and finally set player's current location to loc
+		// if not...
+			// display feedback to the player that they can't reach loc from here
+	// if not...
+		// display feedback to the player that loc does not exist
+}
 
 player.pickup = function(item){
 	// check if item is present in current location
