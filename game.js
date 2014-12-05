@@ -1,16 +1,25 @@
 // Global player object (later this will no longer be global)
 var player = {
 	items: [],
-	pickup: function(item){
+};
+
+player.pickup = function(item){
+	// check if item is present in current location
+		// if so, remove it from the current location
+		// and add it to player's items
 		this.items.push(item);
-	},
-	drop: function(item){
-		var pos = this.items.indexOf(item);
-		if (pos >= 0) {
-			this.items.splice(pos, 1);
-		}
+	// if not...
+		// inform the user that item is not here
+};
+
+player.drop = function(item){
+	var pos = this.items.indexOf(item);
+	if (pos >= 0) {
+		// remove it from player's items
+		this.items.splice(pos, 1);
+		// and add it to the current location
 	}
-}
+};
 
 // example of recognizing the need for a helper function and then writing it!
 // we could set innerHTML to empty string - but this is better!
