@@ -17,37 +17,43 @@ and additions you need to make.
     to the next through clever use of the listeners.
 */
 function gameIntro() {
-	var inputBox = document.querySelector("input");
-	var listener = function(event){
-		if (event.keyCode === 13) {
-		    // remove this listener before continuing so it only runs once
-		    event.target.removeEventListener(listener);
-			customizePlayer(this.value);
-			gameStart();
-		}
-	};
-	inputBox.addEventListener("keyup", listener);
+    var inputBox = document.querySelector("input");
+    var listener = function(event) {
+        if (event.keyCode === 13) {
+            // remove this listener before continuing so it only runs once
+            event.target.removeEventListener("keyup", listener);
+            customizePlayer(this.value);
+            gameStart();
+        }
+    };
+    inputBox.addEventListener ("keyup", listener);
 }
 
 /*
     Start the main game loop.
 */
 function gameStart() {
-	var inputBox = document.querySelector("input");
-	inputBox.addEventListener("keyup", function(event){
-		if (event.keyCode === 13) {
-			gameStep(this.value);
-		}
-	});
+    var inputBox = document.querySelector("input");
+    inputBox.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            gameStep(this.value);
+        }
+    });
+    // we should also perform a few other start-of-game tasks, such as
+    //  - set the player's starting propreties (location and any initial items)
+    //  - display the help (list of commands)
+    //  - display the initial scene
+    //  - anything else you need to do before the user starts entering commands
 }
 
 /*
     Run one pass of the game loop.
 */
-function gameStep (input) {
-	var cmd = interpret(input); // parse the user input
-	var result = execute(cmd); // run the desired command
-	report(result); // display the results on the screen
+function gameStep(input) {
+    console.log("check");
+    var cmd = interpret(input); // parse the user input
+    var result = execute(cmd); // run the desired command
+    report(result); // display the results on the screen
 }
 
 /*
@@ -60,33 +66,27 @@ function customizePlayer(input) {
 /*
     Parse and normalize the user input string.
 */
-function interpret (input) {
-    console.log("calling interpret"); // remove when finished debugging
-
+function interpret(input) {
     var cmd = {}, tokens = input.trim().toLowerCase().split(" ");
     cmd.action = tokens.shift();
     cmd.target = tokens.join(" ");
-	return cmd;
+    return cmd;
 }
 
 /*
     Perform the desired player action.
 */
-function execute (command) {
-	console.log("calling execute"); // remove when finished debugging
-
-	player[command.action](command.target);
+function execute(command) {
+    player[command.action](command.target);
 }
 
 /*
     Display any results/changes on the page.
 */
-function report (result) { // note: parameter not currently used
-	console.log('calling report'); // remove when finished debugging
-	
-	displayActions();
-	displayInventory();
-	displayScene();
+function report(result) { // note: parameter not currently used
+    displayActions();
+    displayInventory();
+    displayScene();
 }
 
 /*
@@ -94,10 +94,8 @@ function report (result) { // note: parameter not currently used
 */
 function displayActions() {
     var field, action, actionList;
-
     actionList = document.querySelector("#help > ul");
     clearContent(actionList);
-
     for (field in player) {
         if (player[field] instanceof Function) {
             action = document.createElement("li");
@@ -112,12 +110,10 @@ function displayActions() {
 */
 function displayInventory() {
     var i, item, inventory;
-
     inventory = document.querySelector("#inventory > ul");
     clearContent(inventory);
-
     for (i in player.items) {
-        item = document.createElement("li");
+        item = document.createElement ("li");
         item.textContent = player.items[i];
         inventory.appendChild(item);
     }
@@ -128,6 +124,14 @@ function displayInventory() {
 */
 function displayScene() {
     // Hmmm... need to implement this function...
+}
+
+/*
+    This could be used along with a new paragraph element to display certain messages.
+*/
+function displayFeedback(msg) {
+    var scene = document.querySelector("#feedback");
+    scene.textContent = msg; drawAttention(scene);
 }
 
 /*
