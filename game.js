@@ -140,4 +140,4 @@ function clearContent(node) {
     }
 }
 
-window.onload = gameStart; // game starts only after the page is loaded
+window.onload = gameIntro; // game starts only after the page is loaded
