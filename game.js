@@ -130,8 +130,7 @@ function displayScene() {
     This could be used along with a new paragraph element to display certain messages.
 */
 function displayFeedback(msg) {
-    var scene = document.querySelector("#feedback");
-    scene.textContent = msg; drawAttention(scene);
+    // Hmmm... need to implement this function...
 }
 
 /*
